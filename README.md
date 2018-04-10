@@ -1,7 +1,7 @@
 # Commerical-Real-Estate-Slayer
 Toolkit to automate prospecting systems for agents/brokers.
 
-Goals: The goal of this project is to develop a set of toolsets that automate or reduce the workload of prospecting processes, while maximizing the time/value of each process.  
+Goals: Maximize the time/value of the prospecting process.  
 
 Settings:
     - Pattern: [VARIABLE: Description...]
