@@ -5,13 +5,13 @@ Goals: The goal of this project is to develop a set of toolsets that automate or
 
 
 Settings:
-    Pattern: [VARIABLE: Description...]
-    URL: The remote JSON source location.
-    USERNAME: Username or login for your JSON Request.
-    API_KEY: The API key for your JSON source.
-    TAG: Tag of the list you want to download. 
-    TIMER_1: The high number of seconds for the phone.
-    TIMER_2: The low number of seconds for the phone.
+    - Pattern: [VARIABLE: Description...]
+    - URL: The remote JSON source location.
+    - USERNAME: Username or login for your JSON Request.
+    - API_KEY: The API key for your JSON source.
+    - TAG: Tag of the list you want to download. 
+    - TIMER_1: The high number of seconds for the phone.
+    - TIMER_2: The low number of seconds for the phone.
 
 
 - Automate Cisco Jabber GUI desktop client (Windows 7+)
@@ -42,12 +42,6 @@ Settings:
     - Threading during the call automation cycle.
     - Call charts and statistics. 
     - Start/Stop/Pause/Step buttons and hot-keys. 
-
-- GUI implementation
-- Search for additional contact information using relation property addresses.
-- Read TCP/SIP packets to parse phone call information. 
-
-
 
 
 Regex parsers
