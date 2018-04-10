@@ -1,8 +1,7 @@
 # Commerical-Real-Estate-Slayer
-Toolkit to automate prospecting system for CRE agents/brokers.
+Toolkit to automate prospecting systems for agents/brokers.
 
 Goals: The goal of this project is to develop a set of toolsets that automate or reduce the workload of prospecting processes, while maximizing the time/value of each process.  
-
 
 Settings:
     - Pattern: [VARIABLE: Description...]
@@ -12,20 +11,16 @@ Settings:
     - TAG: Tag of the list you want to download. 
     - TIMER_1: The high number of seconds for the phone.
     - TIMER_2: The low number of seconds for the phone.
-
-
 - Automate Cisco Jabber GUI desktop client (Windows 7+)
     - Identify and connect to the main Jabber GUI window.
     - Identify the active call window.
     - Place calls from a list of phone numbers. 
     - Mute calls from a list of phone numbers.
-    - End calls from a list of phone numbers.
-    
+    - End calls from a list of phone numbers. 
 - Download a list of contacts and phone numbers from a remote API
     - Parse JSON Data into contact name objects. 
     - Parse JSON Data into phone number objects.
     - Clean phone numbers into a uniform format. 
-
 - Planned Development:
   - Automation:
     - Better call management.
@@ -42,12 +37,4 @@ Settings:
     - Threading during the call automation cycle.
     - Call charts and statistics. 
     - Start/Stop/Pause/Step buttons and hot-keys. 
-
-
-Regex parsers
-
-US phone numbers:
-\(?\b([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})\b
-\(?\b[0-9]{3})\?[0-9]{3}[-.●]?[0-9]{4}\b
-[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}
 
