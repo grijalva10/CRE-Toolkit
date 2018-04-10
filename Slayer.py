@@ -7,34 +7,67 @@ import time
 import webbrowser
 import re
 import sys
+import configparser
 
 
 DEBUG_MODE = True
-USER_NAME = 'grijalva10'
-API_KEY = 'MAI7DidqwWQQVyORPPWG8BtemDw5GWPu'
+USER_NAME = ' '
+API_KEY = ' '
 TAG = "slayer"
-LOOPS= 50
-TIMER_1 = randint(25, 65)
+LOOPS = 0
+RANDOM_1 = 0
+RANDOM_2 = 0
+URL = ''
+QUERY = ''
+MODEL = ''
+SORTING = ''
+TIME_1 = 25
+TIME_2 = 65
 
+TIMER_1 = 0
+
+
+def load_settings():
+    config = configparser.ConfigParser()
+    config.read('Config.ini')
+    log('Loading user settings...')
+    global API_KEY
+    API_KEY = config['DEFAULT']['API_KEY']
+    global URL
+    URL = config['DEFAULT']['URL']
+    global QUERY
+    QUERY = config['DEFAULT']['QUERY']
+    global MODEL
+    MODEL = config['DEFAULT']['MODEL']
+    global SORTING
+    SORTING = config['DEFAULT']['SORTING']
+    global TIME_1
+    SORTING = config['DEFAULT']['TIME_1']
+    global TIME_2
+    SORTING = config['DEFAULT']['TIME_2']
+    global LOOPS
+    LOOPS = config['DEFAULT']['LOOPS']
+    global TIMER_1
+    TIMER_1 = randint(TIME_1, TIME_2)
 
 
 def connect_to_jabber():
-    log('CALL SLAYER: Looking for the jabber window...')
+    log('Looking for the Cisco Jabber window...')
     try:
         w_handle = pywinauto.findwindows.find_windows(title=u'Cisco Jabber', class_name='wcl_manager1')[0]
-        log('CALL SLAYER: I found the jabber window...' + str(w_handle))
-        log('CALL SLAYER: Connecting to Jabber...')
+        log('Success, the Cisco Jabber application was found...' + str(w_handle))
+        log('Connecting to Jabber...')
         app = Application().connect(handle=w_handle)
         dlg = app.PrintControlIdentifiers
         print(dlg)
 
     except IndexError:
-        print('cant find the fucking call window')
+        print('Cisco Jabber window not found.  Try starting or restarting Cisco Jabber.')
 
 
 
-def call_window_active(phone_number):
-    n = str(phone_number)
+def call_window_active(window_title):
+    n = str(window_title)
     n = re.sub("[^0-9]", "", n)
     try:
 
@@ -63,7 +96,7 @@ def request_tags_contacts():
     url = "http://54.149.103.44/index.php/api2/tags/" + TAG + "/Contacts?_order=-name"
     data = requests.get(url, auth=(USER_NAME, API_KEY)).json()
     count = len(data)
-    log('CALL SLAYER: Initiating...')
+    log('Requesting your call list ...')
     log('CALL SLAYER: Downloading ' + str(count) + ' contacts')
     # log(data)
     return data
@@ -149,15 +182,11 @@ def call_workflow(data):
         time.sleep(1.0)
         pyautogui.press('enter')
         time.sleep(0.3)
-
         while call_window_active(phone):
             mute(phone)
             call(name, phone)
             timer2 = randint(5, 15)
             time.sleep(timer2)
-
-
-
         end = time.time()
         call_timer = round(((end - start) / 60), 2)
         call_timer2 = round(((end - start2) / 60), 2)
@@ -169,10 +198,10 @@ def call_workflow(data):
             sys.exit('Max loops...ending session')
 
 
+def main_loop():
+    load_settings()
+    connect_to_jabber()
+    data = request_tags_contacts()
+    call_workflow(data)
 
-
-
-
-connect_to_jabber()
-data = request_tags_contacts()
-call_workflow(data)
+main_loop()
